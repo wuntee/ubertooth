@@ -2338,7 +2338,7 @@ int main()
 	while (1) {
 		handle_usb(clkn);
 		if(requested_mode != mode)
-			test = 1;
+			//test = 1;
 			switch(lights) {
 				case 0:
 					USRLED_CLR;
