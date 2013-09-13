@@ -2329,6 +2329,8 @@ void led_specan()
 
 int main()
 {
+	u8 lights = 0;
+	u8 test = 0;
 	ubertooth_init();
 	clkn_init();
 	ubertooth_usb_init(vendor_request_handler);
@@ -2336,6 +2338,19 @@ int main()
 	while (1) {
 		handle_usb(clkn);
 		if(requested_mode != mode)
+			test = 1;
+			switch(lights) {
+				case 0:
+					USRLED_CLR;
+					lights++;
+					msleep(100);
+					break;
+				default:
+					USRLED_SET;
+					lights = 0;
+					msleep(100);
+					break;
+			}
 			switch (requested_mode) {
 				 case MODE_RESET:
 					/* Allow time for the USB command to return correctly */
